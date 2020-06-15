@@ -12,6 +12,8 @@ import style from './assets/css/image.module.css';
 // import HomeSections component
 import ViewMore from './ViewMore';
 
+import {useDispatch} from 'react-redux';
+import {setMode} from '../../Redux/Actions/Mode';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -47,8 +49,23 @@ const useStyles = makeStyles((theme) => ({
  */
 
 
+
 export default function SingleService({title, description, image}) {
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+
+    const onMove = () =>{
+        if ( title==='Pairwise Alignment') {
+            dispatch(setMode(1));
+        } else if (title==='MSA Alignment') {
+            dispatch(setMode(2));
+        } else if (title === 'Simple GamePlay') {
+            dispatch(setMode(3));
+        } else {
+            dispatch(setMode(0));
+        }
+    };
 
 
     return (
@@ -58,8 +75,8 @@ export default function SingleService({title, description, image}) {
                 <Paper className={classes.paper} >
 
                     <div className={classes.DivDecoration}>
-                        <img className={style.image} src={image} alt='' />
-                        <h3 className={style.title} >{title}</h3>
+                        <img onClick={onMove} className={style.image} src={image} alt='' />
+                        <h3 onClick={onMove} className={style.title} >{title}</h3>
                         <ViewMore
                             testid='viewMoreId'
                             title={'More details..'}
