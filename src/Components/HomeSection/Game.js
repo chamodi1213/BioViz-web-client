@@ -24,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 2),
   },
   list: {
-    width: 400,
-    height: 230,
+    width: 500,
+    height: 330,
     backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
   },
@@ -59,27 +59,41 @@ export default function TransferList() {
 
   // update the sentences
   const [left, setLeft] = React.useState(
-      ['Good for same length',
-      'Can compaire two sequences',
-      'Can compare more than 2 sequeneces',
+      ['Compares 2 sequences - either protien, DNA or RNA',
+      'Optimal alignment can be obtained with O(n^2)',
+      'Comparatively simple',
+      'Used with phylogenetic tree analysis',
+      'Used to find out conserved regions between 2 sequences',
+      'Genarally uses gloabl alignment',
     ]);
 
   const [right, setRight] = React.useState(
-      ['Time proportianal to O(n^2)',
-      'Easy to calculate',
-      'Time proposinal based on no of input sequences',
+      ['Categorized as local and gloable alignment',
+      'Compare more than 2 sequeneces',
+      `Finding optimal alignment is exhustive. 
+      Scales exponentially with more sequences`,
+      'Iterative and progressive methods are used',
+      `Used to detect reggions of variability or
+       conservation in family of ganes`,
     ]);
 
     const pairwise =
-        ['Good for same length',
-        'Can compaire two sequences',
-        'Time proportianal to O(n^2)',
-        'Easy to calculate',
+        ['Compares 2 sequences - either protien, DNA or RNA',
+        'Optimal alignment can be obtained with O(n^2)',
+        'Comparatively simple',
+        'Categorized as local and gloable alignment',
+        'Used to find out conserved regions between 2 sequences',
         ];
 
     const msa =
-        ['Can compare more than 2 sequeneces',
-        'Time proposinal based on no of input sequences',
+        ['Compare more than 2 sequeneces',
+        'Genarally uses gloabl alignment',
+        `Finding optimal alignment is exhustive. 
+        Scales exponentially with more sequences`,
+        'Iterative and progressive methods are used',
+        `Used to detect reggions of variability or 
+        conservation in family of ganes`,
+        'Used with phylogenetic tree analysis',
         ];
 
 
@@ -204,20 +218,38 @@ export default function TransferList() {
 
   const checkResult = () => {
     if (left.length === pairwise.length && right.length === msa.length) {
+      const one = 'Compares 2 sequences - either protien, DNA or RNA';
       let a = 0;
-      let b = 0;
+      const two = 'Optimal alignment can be obtained with O(n^2)'; let b = 0;
+      const three = 'Comparatively simple'; let c = 0;
+      const four ='Categorized as local and gloable alignment'; let d = 0;
+      const five='Used to find out conserved regions between 2 sequences';
+      let e = 0;
+
       // eslint-disable-next-line
-      right.map((item) => {
-        if (item === 'Can compare more than 2 sequeneces' ) {
+      left.map((item) => {
+        if (item === one ) {
+          console.log('a');
           a = 1;
-        } else if (item === 'Time proposinal based on no of input sequences') {
-          b =1;
+        } else if (item === two) {
+          console.log('b');
+          b = 1;
+        } else if (item === three) {
+          console.log('c');
+          c = 1;
+        } else if (item === four) {
+          console.log('d');
+          d = 1;
+        } else if (item === five) {
+          console.log('e');
+          e = 1;
         }
       });
 
-      if (a===b && a) {
+      if (a===b && a && c===d && a===e) {
         return (
         setAlertcomponent(
+
         <Alert onClick = {checkResult} {...rightAnswerAlert} />,
         )
       );
@@ -286,10 +318,9 @@ export default function TransferList() {
         <Snackbar {...instruction} testid='snackbarId' />
         <Grid item testid='gridItemId3'>
           {customList('MSA Alignment', right)}</Grid>
-
+          <ShowResults />
       </Grid>
 
-      <ShowResults />
     </div>
   );
 }

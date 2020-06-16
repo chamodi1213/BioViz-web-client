@@ -48,8 +48,6 @@ const useStyles = makeStyles((theme) => ({
  * @return {React.ReactElement}
  */
 
-
-
 export default function SingleService({title, description, image}) {
     const classes = useStyles();
 
@@ -75,8 +73,17 @@ export default function SingleService({title, description, image}) {
                 <Paper className={classes.paper} >
 
                     <div className={classes.DivDecoration}>
-                        <img onClick={onMove} className={style.image} src={image} alt='' />
-                        <h3 onClick={onMove} className={style.title} >{title}</h3>
+                        <img
+                            onClick={onMove}
+                            className={style.image}
+                            src={image}
+                            alt=''
+                        />
+                        <h3
+                            onClick={onMove}
+                            className={style.title}
+                            >{title}
+                        </h3>
                         <ViewMore
                             testid='viewMoreId'
                             title={'More details..'}

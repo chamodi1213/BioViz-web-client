@@ -21,7 +21,7 @@ const useStyles = makeStyles((theme) => ({
   },
   svg: {
     width: 200,
-    height: 150,
+    height: 300,
     marginLeft: 7,
     marginRight: 7,
   },
@@ -56,17 +56,21 @@ export default function SimpleGrow() {
                     <br />
                     <Divider />
                 </Typography>
+
                 <Typography variant="caption" display="block" gutterBottom>
-                1. Good for same length
+                1. Compares 2 sequences - either protien, DNA or RNA
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom>
-                2. Can compaire two sequences
+                2. Optimal alignment can be obtained with O(n^2)
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom>
-                3. Time proportianal to O(n^2)
+                3. Comparatively simple
                 </Typography>
                 <Typography variant="caption" display="block" gutterBottom>
-                4. Easy to calculate
+                4. Categorized as local and gloable alignment
+                </Typography>
+                <Typography variant="caption" display="block" gutterBottom>
+                5. Used to find out conserved regions between 2 sequences
                 </Typography>
 
             </div>
@@ -87,12 +91,28 @@ export default function SimpleGrow() {
                         <br />
                         <Divider />
                     </Typography>
+
                     <Typography variant="caption" display="block" gutterBottom>
-                    1. Can compare more than 2 sequeneces
+                    1. Compare more than 2 sequeneces
                     </Typography>
                     <Typography variant="caption" display="block" gutterBottom>
-                    2. Time proposinal based on no of input sequences
+                    2. Genarally uses gloabl alignment
                     </Typography>
+                    <Typography variant="caption" display="block" gutterBottom>
+                    3. Finding optimal alignment is exhustive.
+                    Scales exponentially with more sequences
+                    </Typography>
+                    <Typography variant="caption" display="block" gutterBottom>
+                    4. Iterative and progressive methods are used
+                    </Typography>
+                    <Typography variant="caption" display="block" gutterBottom>
+                    5. Used to detect reggions of variability or
+                    conservation in family of ganes
+                    </Typography>
+                    <Typography variant="caption" display="block" gutterBottom>
+                    6. Used with phylogenetic tree analysis
+                    </Typography>
+
 
             </div>
           </Paper>
