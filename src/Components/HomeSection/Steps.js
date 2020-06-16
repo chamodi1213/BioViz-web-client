@@ -99,15 +99,16 @@ const gameData = {
   image3: input3Image,
   image4: score2Image,
   title1: `Select the Gameplay`,
-  title2: `Read the instruction`,
-  title3: `Enter your answer`,
+  title2: `Read the instructions`,
+  title3: `Input your answer`,
   title4: `Click enter to get score`,
   step1: `First click the menu icon. 
         Then you can see some menu items in leftside. After that click 
         'Alignment Game' to play Alignment Game.`,
-  step2: `Read the instruction...`,
+  step2: `Read the instructions to get to know about how its working..`,
   step3: `There are defaultly set values of 
-         'mismatch' and 'gap'. You need to enter your answers.`,
+         'mismatch' and 'gap'. You need to enter your answers by
+          moving the items to right place.`,
   step4: `If you are finished the all above steps just 
         click 'Enter' to get the result. This may can get 
         few secounds to visualize the score.`,
