@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -74,16 +75,18 @@ export default function SingleService({title, description, image}) {
 
                     <div className={classes.DivDecoration}>
                         <img
-                            onClick={onMove}
+                            // onClick={onMove}
                             className={style.image}
                             src={image}
                             alt=''
                         />
+                        <Tooltip title={'Click here to visit '+title} >
                         <h3
                             onClick={onMove}
                             className={style.title}
                             >{title}
                         </h3>
+                        </Tooltip>
                         <ViewMore
                             testid='viewMoreId'
                             title={'More details..'}
@@ -101,4 +104,4 @@ SingleService.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.node,
-  };
+};
