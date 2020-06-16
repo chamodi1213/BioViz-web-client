@@ -229,19 +229,14 @@ export default function TransferList() {
       // eslint-disable-next-line
       left.map((item) => {
         if (item === one ) {
-          console.log('a');
           a = 1;
         } else if (item === two) {
-          console.log('b');
           b = 1;
         } else if (item === three) {
-          console.log('c');
           c = 1;
         } else if (item === four) {
-          console.log('d');
           d = 1;
         } else if (item === five) {
-          console.log('e');
           e = 1;
         }
       });

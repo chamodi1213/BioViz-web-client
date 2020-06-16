@@ -17,7 +17,25 @@ describe('Testing the SingleService component', () => {
     const store = mockStore({/* any required initial state */ });
 
     const service = {
-        title: 'Analyze DNA Sequence',
+        title: 'Analyze Alignment',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        image: image1,
+    };
+
+    const msa = {
+        title: 'MSA Alignment',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        image: image1,
+    };
+
+    const pairwise = {
+        title: 'Pairwise Alignment',
+        description: 'Lorem ipsum dolor sit amet consectetur.',
+        image: image1,
+    };
+
+    const gameplay = {
+        title: 'Simple GamePlay',
         description: 'Lorem ipsum dolor sit amet consectetur.',
         image: image1,
     };
@@ -68,7 +86,7 @@ describe('Testing the SingleService component', () => {
         );
         const text = wrapper.find('div div h3');
         expect(text).toBeTruthy();
-        expect(text.text()).toBe('Analyze DNA Sequence');
+        expect(text.text()).toBe('Analyze Alignment');
     });
 
     it('render image', () => {
@@ -94,5 +112,45 @@ describe('Testing the SingleService component', () => {
         expect(wrapper).toBeTruthy();
         const ViewMoreComponent = wrapper.find(ViewMore);
         expect(ViewMoreComponent.length).toBe(1);
+    });
+
+    it('clicck title to go MSA', () => {
+        const wrapper = mount(
+            <Provider store={store}><SingleService {...msa} /></Provider>,
+        );
+        const title = wrapper.find('div div h3');
+        expect(title).toBeTruthy();
+        expect(title.text()).toBe('MSA Alignment');
+        title.simulate('click');
+    });
+
+    it('clicck title to go pairwise', () => {
+        const wrapper = mount(
+            <Provider store={store}><SingleService {...pairwise} /></Provider>,
+        );
+        const title = wrapper.find('div div h3');
+        expect(title).toBeTruthy();
+        expect(title.text()).toBe('Pairwise Alignment');
+        title.simulate('click');
+    });
+
+    it('clicck title to go Gameplay', () => {
+        const wrapper = mount(
+            <Provider store={store}><SingleService {...gameplay} /></Provider>,
+        );
+        const title = wrapper.find('div div h3');
+        expect(title).toBeTruthy();
+        expect(title.text()).toBe('Simple GamePlay');
+        title.simulate('click');
+    });
+
+    it('clicck title to go Home', () => {
+        const wrapper = mount(
+            <Provider store={store}><SingleService {...service} /></Provider>,
+        );
+        const title = wrapper.find('div div h3');
+        expect(title).toBeTruthy();
+        expect(title.text()).toBe('Analyze Alignment');
+        title.simulate('click');
     });
 });

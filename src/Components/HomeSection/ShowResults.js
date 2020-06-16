@@ -43,7 +43,12 @@ export default function SimpleGrow() {
   return (
     <div className={classes.root}>
       <FormControlLabel
-        control={<Switch checked={checked} onChange={handleChange} />}
+        control={<Switch
+                    testid='switchId'
+                    checked={checked}
+                    // onChange={handleChange}
+                    onClick={handleChange}
+                />}
         label="Show Solution"
       />
       <div className={classes.container}>
