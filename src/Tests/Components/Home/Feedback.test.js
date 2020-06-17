@@ -10,6 +10,7 @@ import {findByAttr} from '../../helper';
 // page
 import Feedback from '../../../Components/HomeSection/Feedback';
 import Alert from '../../../Components/HomeSection/Alert';
+import TextArea from '../../../Components/HomeSection/TextArea';
 
 const mockStore = configureStore();
 
@@ -35,7 +36,7 @@ describe('Testing the Steps component', () => {
         expect(wrapper).toBeTruthy();
 
         const heading = wrapper.find('div h2');
-        expect(heading.text()).toBe('Give us feedback');
+        expect(heading.text()).toBe('Leave a feedback');
     });
 
     it('render the sub-heading in Feadback component', () => {
