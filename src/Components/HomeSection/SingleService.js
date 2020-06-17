@@ -14,7 +14,7 @@ import style from './assets/css/image.module.css';
 import ViewMore from './ViewMore';
 
 import {useDispatch} from 'react-redux';
-import {setMode} from '../../Redux/Actions/Mode';
+import {setDrawerOpen} from '../../Redux/Actions/Mode';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -55,15 +55,7 @@ export default function SingleService({title, description, image}) {
     const dispatch = useDispatch();
 
     const onMove = () =>{
-        if ( title==='Pairwise Alignment') {
-            dispatch(setMode(1));
-        } else if (title==='MSA Alignment') {
-            dispatch(setMode(2));
-        } else if (title === 'Simple GamePlay') {
-            dispatch(setMode(3));
-        } else {
-            dispatch(setMode(0));
-        }
+        dispatch(setDrawerOpen(true));
     };
 
 

@@ -59,9 +59,9 @@ export default function FullScreenDialog() {
         src={image} alt=''
         /> */}
 
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}
+      <Button variant="contained" color="primary" onClick={handleClickOpen}
         testid='buttonId'>
-        Knowlege Game
+        Knowledge Game
       </Button>
 
       <Dialog fullScreen open={open} testid='dialogId'

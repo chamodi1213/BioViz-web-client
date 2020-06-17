@@ -200,7 +200,7 @@ export default function VerticalLinearStepper({HeadTitle, image1, image2, image3
                     </Button>
                     <br />
                     <Button testid='finalButtonId'
-                        variant="outlined"
+                        variant="contained"
                         color="primary"
                         onClick={onMove}
                         >

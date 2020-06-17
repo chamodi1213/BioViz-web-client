@@ -71,12 +71,16 @@ const DialogActions = withStyles((theme) => ({
  * @return {React.ReactElement}
  */
 
-export default function CustomizedDialogs({viewResult, title, description}) {
+export default function CustomizedDialogs({viewResult, title,
+    description, submitFeedback}) {
     const classes = useStyles();
   const [open, setOpen] = React.useState(false);
 
   const handleClickOpen = () => {
     setOpen(true);
+    if (submitFeedback) {
+        submitFeedback();
+    }
   };
   const handleClose = () => {
     setOpen(false);
@@ -145,4 +149,5 @@ CustomizedDialogs.propTypes = {
     viewResult: PropTypes.bool,
     title: PropTypes.string,
     description: PropTypes.string,
+    submitFeedback: PropTypes.func,
   };
