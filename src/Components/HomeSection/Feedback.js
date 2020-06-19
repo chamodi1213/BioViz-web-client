@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
@@ -15,42 +15,33 @@ import style from './assets/css/image.module.css';
 // import HomeSections component
 import Alert from './Alert';
 import Rating from './Rating';
+import TextArea from './TextArea';
+import {submitFeedback} from '../../Feedback/feedback';
 
 
 const useStyles = makeStyles((theme) => ({
-  table: {
-    // minWidth: 650,
-  },
-  root: {
-    paddingLeft: '20%',
-    paddingRight: '20%',
-    flexGrow: 1,
-    width: '100%',
-    backgroundColor: theme.palette.background.paper,
-    marginTop: 50,
-    paddingBottom: 50,
-  },
-  position: {
-    marginTop: '20px',
-    marginLeft: '85%',
-  },
+    table: {
+        // minWidth: 650,
+    },
+    root: {
+        paddingLeft: '20%',
+        paddingRight: '20%',
+        flexGrow: 1,
+        width: '100%',
+        backgroundColor: theme.palette.background.paper,
+        marginTop: 50,
+        paddingBottom: 50,
+    },
+    position: {
+        marginTop: '20px',
+        marginLeft: '85%',
+    },
 }));
 
 
-function createData(name, rate) {
-  return {name, rate};
-}
-
-const rows = [
-  createData('Atraction of website', <Rating />),
-  createData('Satistification of fuctionalities', <Rating />),
-  createData('Satistification of visualizing the result', <Rating />),
-  createData('Satistification of response time', <Rating />),
-];
-
 const details = {
-  title: 'Thank you!',
-  description: 'This help us to imorove our website better in the future.',
+    title: 'Thank you!',
+    description: 'This help us to imorove our website better in the future.',
 };
 
 /**
@@ -59,45 +50,103 @@ const details = {
  */
 
 export default function Feedback() {
-  const classes = useStyles();
+    const classes = useStyles();
 
-  return (
-    <div className={classes.root}>
-      <h2 className={style.heading}>Give us feedback</h2>
-      <p className={style.subHeading}>
-        We are happy to have your valueble feedback to
-        improve our website better.
+    const [ratingValues, setratingValues] = useState([1, 5, 5, 5]);
+    const [generalComment, setgeneralComment] = useState('');
+
+    const setSingleRatingValue = (index) => {
+        return (event, newValue) => {
+            const newValues = [...ratingValues];
+            newValues[index] = newValue;
+            setratingValues(newValues);
+        };
+    };
+
+    const onChangeCommentValue = (e) => {
+        setgeneralComment(e.target.value);
+        console.log(generalComment);
+    };
+
+    const onSubmitFeedback = ()=>{
+        submitFeedback(ratingValues, generalComment);
+    };
+
+
+    function createData(name, rate) {
+        return {name, rate};
+    }
+
+    const rows = [
+        createData('Atraction of website',
+            <Rating
+                currentValue={ratingValues[0]}
+                onChange={setSingleRatingValue(0)} />),
+        createData('Satistification of fuctionalities',
+            <Rating
+                currentValue={ratingValues[1]}
+                onChange={setSingleRatingValue(1)} />),
+        createData('Satistification of visualizing the result',
+            <Rating
+                currentValue={ratingValues[2]}
+                onChange={setSingleRatingValue(2)} />),
+        createData('Satistification of response time',
+            <Rating
+                currentValue={ratingValues[3]}
+                onChange={setSingleRatingValue(3)} />),
+        createData('Any other genaral comment',
+            <TextArea
+                currentValue={generalComment}
+                onChange={onChangeCommentValue} />),
+    ];
+
+    return (
+        <div className={classes.root}>
+            <h2 className={style.heading}>Leave a feedback</h2>
+            <p className={style.subHeading}>
+                We are happy to have your valueble feedback to
+                improve our website better.
         </p>
 
-      <TableContainer testid='tableContainerId' component={Paper}>
-        <Table
-          testid='tableId' className={classes.table} aria-label="caption table">
-          <caption>We are happy to get your feedback.</caption>
-          <TableHead testid='tableHeadId'>
-            <TableRow testid='tableRowId'>
-              <TableCell testid='tableCellId1'>Facilities</TableCell>
-              <TableCell testid='tableCellId2' align="right">Ratings</TableCell>
+            <TableContainer testid='tableContainerId' component={Paper}>
+                <Table
+                    testid='tableId'
+                    className={classes.table}
+                    aria-label="caption table">
+                    <caption>We are happy to get your feedback.</caption>
+                    <TableHead testid='tableHeadId'>
+                        <TableRow testid='tableRowId'>
+                            <TableCell testid='tableCellId1'>
+                                Facilities
+                                </TableCell>
+                            <TableCell testid='tableCellId2' align="right">
+                                Ratings
+                                </TableCell>
 
-            </TableRow>
-          </TableHead>
-          <TableBody testid='tableBodyId'>
-            {rows.map((row) => (
-              <TableRow testid='tableRowId2' key={row.name}>
-                <TableCell testid='tableCellId3' component="th" scope="row">
-                  {row.name}
-                </TableCell>
-                <TableCell
-                  testid='tableCellId4' align="right">{row.rate}</TableCell>
-              </TableRow>
-            ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+                        </TableRow>
+                    </TableHead>
+                    <TableBody testid='tableBodyId'>
+                        {rows.map((row) => (
+                            <TableRow testid='tableRowId2' key={row.name}>
+                                <TableCell testid='tableCellId3'
+                                    component="th" scope="row">
+                                    {row.name}
+                                </TableCell>
+                                <TableCell
+                                    testid='tableCellId4'
+                                    align="right">
+                                    {row.rate}
+                                </TableCell>
+                            </TableRow>
+                        ))}
+                    </TableBody>
+                </Table>
+            </TableContainer>
 
-      <div className={classes.position}>
-        <Alert {...details} />
-      </div>
+            <div className={classes.position} >
+                <Alert {...details} submitFeedback={onSubmitFeedback} />
+            </div>
 
-    </div>
-  );
+        </div>
+    );
 }

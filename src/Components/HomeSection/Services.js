@@ -16,16 +16,16 @@ import SingleService from './SingleService';
 
 const services = [
      {
-    title: 'Analyze DNA Sequence',
-     description: `Sequences are analyling according to 
-        intetnational standards or user customizations.`,
+    title: 'Pairwise Alignment',
+     description: `Input your two sequence to get standard or 
+     your customized alignment results.`,
      image: analyzeImage,
     },
 
     {
-    title: 'Visualize DNA Alignment',
-    description: `Results are visualize with 
-        user-friendly with matrixes and alignments.`,
+    title: 'MSA Alignment',
+    description: `Enter your sequences to get 
+        user-friendly matrixes and alignments.`,
     image: visualizeImage,
     },
 

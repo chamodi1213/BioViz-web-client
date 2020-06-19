@@ -14,6 +14,7 @@ import Divider from '@material-ui/core/Divider';
 // import HomeSections component
 import Snackbar from './Snackbar';
 import Alert from './Alert';
+import ShowResults from './ShowResults';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +24,8 @@ const useStyles = makeStyles((theme) => ({
     padding: theme.spacing(1, 2),
   },
   list: {
-    width: 400,
-    height: 230,
+    width: 500,
+    height: 330,
     backgroundColor: theme.palette.background.paper,
     overflow: 'auto',
   },
@@ -58,27 +59,41 @@ export default function TransferList() {
 
   // update the sentences
   const [left, setLeft] = React.useState(
-      ['Good for same length',
-      'Can compaire two sequences',
-      'Can compare more than 2 sequeneces',
+      ['Compares 2 sequences - either protien, DNA or RNA',
+      'Optimal alignment can be obtained with O(n^2)',
+      'Comparatively simple',
+      'Used with phylogenetic tree analysis',
+      'Used to find out conserved regions between 2 sequences',
+      'Genarally uses gloabl alignment',
     ]);
 
   const [right, setRight] = React.useState(
-      ['Time proportianal to O(n^2)',
-      'Easy to calculate',
-      'Time proposinal based on no of input sequences',
+      ['Categorized as local and gloable alignment',
+      'Compare more than 2 sequeneces',
+      `Finding optimal alignment is exhustive. 
+      Scales exponentially with more sequences`,
+      'Iterative and progressive methods are used',
+      `Used to detect reggions of variability or
+       conservation in family of ganes`,
     ]);
 
     const pairwise =
-        ['Good for same length',
-        'Can compaire two sequences',
-        'Time proportianal to O(n^2)',
-        'Easy to calculate',
+        ['Compares 2 sequences - either protien, DNA or RNA',
+        'Optimal alignment can be obtained with O(n^2)',
+        'Comparatively simple',
+        'Categorized as local and gloable alignment',
+        'Used to find out conserved regions between 2 sequences',
         ];
 
     const msa =
-        ['Can compare more than 2 sequeneces',
-        'Time proposinal based on no of input sequences',
+        ['Compare more than 2 sequeneces',
+        'Genarally uses gloabl alignment',
+        `Finding optimal alignment is exhustive. 
+        Scales exponentially with more sequences`,
+        'Iterative and progressive methods are used',
+        `Used to detect reggions of variability or 
+        conservation in family of ganes`,
+        'Used with phylogenetic tree analysis',
         ];
 
 
@@ -130,6 +145,7 @@ export default function TransferList() {
     setChecked(not(checked, rightChecked));
   };
 
+
   const customList = (title, items) => (
     <Card testid='cardId'>
       <CardHeader testid='cardHeaderId'
@@ -152,8 +168,11 @@ export default function TransferList() {
       />
       <Divider testid='dividerId' />
       <List className={classes.list} dense component="div" role="list"
-        testid='listId'>
+        testid='listId' >
         {items.map((value) => {
+          // const val = valu.split(':');
+          // const value=val[0];
+          // const alignment = val[1];
           const labelId = `transfer-list-all-item-${value}-label`;
 
           return (
@@ -199,11 +218,43 @@ export default function TransferList() {
 
   const checkResult = () => {
     if (left.length === pairwise.length && right.length === msa.length) {
+      const one = 'Compares 2 sequences - either protien, DNA or RNA';
+      let a = 0;
+      const two = 'Optimal alignment can be obtained with O(n^2)'; let b = 0;
+      const three = 'Comparatively simple'; let c = 0;
+      const four ='Categorized as local and gloable alignment'; let d = 0;
+      const five='Used to find out conserved regions between 2 sequences';
+      let e = 0;
+
+      // eslint-disable-next-line
+      left.map((item) => {
+        if (item === one ) {
+          a = 1;
+        } else if (item === two) {
+          b = 1;
+        } else if (item === three) {
+          c = 1;
+        } else if (item === four) {
+          d = 1;
+        } else if (item === five) {
+          e = 1;
+        }
+      });
+
+      if (a===b && a && c===d && a===e) {
+        return (
+        setAlertcomponent(
+
+        <Alert onClick = {checkResult} {...rightAnswerAlert} />,
+        )
+      );
+      } else {
         return (
           setAlertcomponent(
-          <Alert onClick = {checkResult} {...rightAnswerAlert} />,
+          <Alert onClick = {checkResult} {...wrongAnswerAlert} />,
           )
         );
+      }
     } else {
       return (
         setAlertcomponent(
@@ -262,8 +313,9 @@ export default function TransferList() {
         <Snackbar {...instruction} testid='snackbarId' />
         <Grid item testid='gridItemId3'>
           {customList('MSA Alignment', right)}</Grid>
-
+          <ShowResults />
       </Grid>
+
     </div>
   );
 }
