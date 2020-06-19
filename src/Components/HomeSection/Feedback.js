@@ -52,7 +52,7 @@ const details = {
 export default function Feedback() {
     const classes = useStyles();
 
-    const [ratingValues, setratingValues] = useState([1, 5, 5, 5]);
+    const [ratingValues, setratingValues] = useState([5, 5, 5, 5]);
     const [generalComment, setgeneralComment] = useState('');
 
     const setSingleRatingValue = (index) => {
