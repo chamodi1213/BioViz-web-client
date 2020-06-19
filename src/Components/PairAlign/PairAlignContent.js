@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import PairAlignInput from './PairAlignInput';
 import Button from '@material-ui/core/Button';
 import {useSelector, useDispatch} from 'react-redux';
@@ -19,6 +19,13 @@ import {setSnackBar} from '../../Redux/Actions/Snackbar';
  */
 export default function PairAlignContent() {
     const dispatch = useDispatch();
+
+    /**
+     * scroll to top when this section is rendered
+     */
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
 
     /**
      * state variable to store result from backend

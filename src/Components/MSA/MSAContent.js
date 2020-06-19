@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import MSAInput from './MSAInput';
 import {useSelector, useDispatch} from 'react-redux';
 import Button from '@material-ui/core/Button';
@@ -18,6 +18,13 @@ import GenomeTypeInput from '../GeomeType/GenomeTypeInput';
  */
 export default function MSAContent() {
     const dispatch = useDispatch();
+
+    /**
+     * scroll to top when this section is rendered
+     */
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
 
     /**
      * state variable to store result from backend

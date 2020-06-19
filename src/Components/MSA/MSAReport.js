@@ -103,11 +103,26 @@ class MSAReport extends Component {
             });
         }
 
+        let longestSequenceNameSize = 0;
+        this.props.input.sequencesNames.forEach((element) => {
+            longestSequenceNameSize = Math.max(element.length,
+                longestSequenceNameSize);
+        });
+
 
         const alignmets = this.props.result.alignments.map((element, index) => {
+            const seqName = this.props.input.sequencesNames[index];
+            const spacesN = 10 + (longestSequenceNameSize-seqName.length);
+            let spaces='';
+            for (let i = 0; i < spacesN; i++) {
+                spaces=spaces.concat('\u2003');
+            }
+            console.log(spacesN);
+
             return <><br />
-                {`>${this.props.input.sequencesNames[index]}`}<br />
-                {element}<br />
+                {`>${seqName}`}
+                {spaces}
+                {element}
             </>;
         });
 
@@ -155,6 +170,7 @@ class MSAReport extends Component {
             Alignments
                 <div className={classes.wrapped}>
                         {alignmets}
+                        <br/>
                         <br/>
                         {`Identity : ${this.props.result.identity}`}<br />
                     </div>

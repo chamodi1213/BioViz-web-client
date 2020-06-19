@@ -16,6 +16,10 @@ import {useDispatch, useSelector} from 'react-redux';
 import {DrawerList} from './DrawerList';
 import MainContent from '../MainContent';
 import {setDrawerOpen} from '../../Redux/Actions/Mode';
+import {ButtonBase} from '@material-ui/core';
+
+import {setMode} from '../../Redux/Actions/Mode';
+
 
 const drawerWidth = 300;
 
@@ -75,6 +79,10 @@ function MainDrawer(props) {
         dispatch(setDrawerOpen(!drawerOpenStatus));
     };
 
+    const goToHomeSection = ()=>{
+        dispatch(setMode(0));
+    };
+
 
     return (
         <div className={classes.root}>
@@ -93,9 +101,11 @@ function MainDrawer(props) {
                     </IconButton>
 
                     <Box className={classes.headerBox}>
-                        <Typography variant="h6" noWrap>
-                            BioViz Web Client
-              </Typography>
+                        <ButtonBase onClick={goToHomeSection}>
+                            <Typography variant="h6" noWrap>
+                                BioViz Web Client
+                            </Typography>
+                        </ButtonBase>
                     </Box>
 
                 </Toolbar>
