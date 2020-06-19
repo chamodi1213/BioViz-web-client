@@ -50,28 +50,45 @@ export default function FullScreenDialog() {
 
   return (
     <div>
-      <Button variant="outlined" color="primary" onClick={handleClickOpen}
+
+      <h1>Lets have a fun!</h1>
+      <p>Lets see your performing of knowledge</p>
+
+      {/* <img
+        className={classes.imgage}
+        src={image} alt=''
+        /> */}
+
+      <Button variant="contained" color="primary" onClick={handleClickOpen}
         testid='buttonId'>
-        Knowlege Game
+        Knowledge Game
       </Button>
+
       <Dialog fullScreen open={open} testid='dialogId'
         onClose={handleClose} TransitionComponent={Transition}>
+
         <AppBar className={classes.appBar} testid='appBarId'>
           <Toolbar testid='toolbarId'>
             <IconButton edge="start" testid='iconButtonId'
                 color="inherit" onClick={handleClose} aria-label="close" >
               <CloseIcon />
             </IconButton>
-            <Typography variant="h6" className={classes.title}
+
+            <Typography
+              component={'span'}
+              variant="h6"
+              className={classes.title}
               testid='typographyId'>
                 Test your knowledge of alignment
             </Typography>
+
             <Button
               autoFocus
               color="inherit"
               onClick={handleClose}
               testid='InnerButtonId'
               >Close</Button>
+
           </Toolbar>
         </AppBar>
         <Game />

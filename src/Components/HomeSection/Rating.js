@@ -2,7 +2,6 @@
 import React from 'react';
 import {withStyles, makeStyles} from '@material-ui/core/styles';
 import Slider from '@material-ui/core/Slider';
-import {useDispatch} from 'react-redux';
 import PropTypes from 'prop-types';
 
 const useStyles = makeStyles((theme) => ({
@@ -14,23 +13,6 @@ const useStyles = makeStyles((theme) => ({
 const iOSBoxShadow =
   '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.13),0 0 0 1px rgba(0,0,0,0.02)';
 
-const marks = [
-  {
-    value: 0,
-  },
-  {
-    value: 25,
-  },
-  {
-    value: 50,
-  },
-  {
-    value: 75,
-  },
-  {
-    value: 100,
-  },
-];
 
 const IOSSlider = withStyles({
   root: {
@@ -39,12 +21,12 @@ const IOSSlider = withStyles({
     padding: '15px 0',
   },
   thumb: {
-    'height': 28,
-    'width': 28,
+    'height': 20,
+    'width': 20,
     'backgroundColor': '#fff',
     'boxShadow': iOSBoxShadow,
-    'marginTop': -14,
-    'marginLeft': -14,
+    'marginTop': -10,
+    'marginLeft': -10,
     '&:focus, &:hover, &$active': {
       'boxShadow': '0 3px 1px rgba(0,0,0,0.1),0 4px 8px rgba(0,0,0,0.3),0 0 0 1px rgba(0,0,0,0.02)',
       // Reset on touch devices, it doesn't add specificity
@@ -55,11 +37,11 @@ const IOSSlider = withStyles({
   },
   active: {},
   valueLabel: {
-    'left': 'calc(-50% + 12px)',
-    'top': -22,
+    'left': 'calc(-50% + 5px)',
+    'top': -20,
     '& *': {
       background: 'transparent',
-      color: '#000',
+      color: '#3880ff',
     },
   },
   track: {
@@ -90,15 +72,7 @@ const IOSSlider = withStyles({
 
 export default function CustomizedSlider(props) {
   const classes = useStyles();
-// eslint-disable-next-line
-  const dispatch = useDispatch();
 
-  const [value, setValue] = React.useState(75);
-
-  const handleChange = (event, newValue) => {
-    /* istanbul ignore next */
-    setValue(newValue);
-  };
 
   return (
     <div className={classes.margin}>
@@ -106,11 +80,15 @@ export default function CustomizedSlider(props) {
         testid='IOSSliderId'
         aria-label="ios slider"
         // defaultValue={75}
-        marks={marks}
+        // marks={marks}
         valueLabelDisplay="on"
         // getAriaValueText={valuetext}
-        value={value}
-        onChange={handleChange}
+        value={props.currentValue}
+        onChange={props.onChange}
+        step={1}
+        marks
+        min={1}
+        max={5}
         />
         {/* {value} */}
     </div>
@@ -119,4 +97,6 @@ export default function CustomizedSlider(props) {
 
 CustomizedSlider.propTypes = {
   inputSliderAction: PropTypes.func,
+  currentValue: PropTypes.number,
+  onChange: PropTypes.func,
 };

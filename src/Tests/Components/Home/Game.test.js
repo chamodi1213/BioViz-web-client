@@ -74,7 +74,7 @@ describe('Testing the Game component', () => {
         const ListItemComponent = findByAttr(wrapper,
             'testid',
             'listItemId').hostNodes();
-        expect(ListItemComponent.length).toBe(6);
+        expect(ListItemComponent.length).toBe(11);
     });
 
     it('render the insde components(ListItemIcon) in Game component', () => {
@@ -83,7 +83,7 @@ describe('Testing the Game component', () => {
         const ListIteIconmComponent = findByAttr(wrapper,
             'testid',
             'listItemIconId').hostNodes();
-        expect(ListIteIconmComponent.length).toBe(6);
+        expect(ListIteIconmComponent.length).toBe(11);
     });
 
     it('render the insde components(CheckBox-inside) in Game component', () => {
@@ -92,7 +92,7 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
     });
 
     it('render the insde components(Divider) in Game component', () => {
@@ -210,7 +210,7 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
         CheckBoxComponent.at(1).simulate('click');
     });
 
@@ -221,7 +221,7 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
         CheckBoxComponent.at(1).simulate('click');
 
         // eslint-disable-next-line camelcase
@@ -239,7 +239,7 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
         CheckBoxComponent.at(5).simulate('click');
 
         // eslint-disable-next-line camelcase
@@ -257,7 +257,7 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
         CheckBoxComponent.at(0).simulate('click');
         CheckBoxComponent.at(1).simulate('click');
         CheckBoxComponent.at(2).simulate('click');
@@ -296,7 +296,7 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
         CheckBoxComponent.at(4).simulate('click');
         CheckBoxComponent.at(4).simulate('click');
     });
@@ -310,8 +310,10 @@ describe('Testing the Game component', () => {
         const CheckBoxComponent = findByAttr(wrapper,
             'testid',
             'checkBox2Id').hostNodes();
-        expect(CheckBoxComponent.length).toBe(6);
+        expect(CheckBoxComponent.length).toBe(11);
         CheckBoxComponent.at(3).simulate('click');
+        CheckBoxComponent.at(5).simulate('click');
+        CheckBoxComponent.at(6).simulate('click');
 
         // eslint-disable-next-line camelcase
         const ButtonComponent_TransferLeft = findByAttr(wrapper,
@@ -319,6 +321,13 @@ describe('Testing the Game component', () => {
             'buttonId3').hostNodes();
         expect(ButtonComponent_TransferLeft.length).toBe(1);
         ButtonComponent_TransferLeft.simulate('click');
+
+        // eslint-disable-next-line camelcase
+        const ButtonComponent_TransferRight = findByAttr(wrapper,
+            'testid',
+            'buttonId1').hostNodes();
+        expect(ButtonComponent_TransferRight.length).toBe(1);
+        ButtonComponent_TransferRight.simulate('click');
 
         const SubmitButtont = findByAttr(wrapper,
             'testid',
@@ -328,8 +337,41 @@ describe('Testing the Game component', () => {
 
         const alertComponent = wrapper.find(Alert);
         expect(alertComponent.length).toBe(1);
+    });
 
-// remove the alert for now
-        // window.alert = jsdomAlert; // restore the jsdom alert
+    it('simulate wrong answer with same length', () => {
+        expect(wrapper).toBeTruthy();
+        // remember the jsdom alert
+        // const jsdomAlert = window.alert;
+        // provide an empty implementation for window.alert
+        window.alert = () => {};
+        const CheckBoxComponent = findByAttr(wrapper,
+            'testid',
+            'checkBox2Id').hostNodes();
+        expect(CheckBoxComponent.length).toBe(11);
+        CheckBoxComponent.at(3).simulate('click');
+
+        // eslint-disable-next-line camelcase
+        const ButtonComponent_TransferLeft = findByAttr(wrapper,
+            'testid',
+            'buttonId3').hostNodes();
+        expect(ButtonComponent_TransferLeft.length).toBe(1);
+        ButtonComponent_TransferLeft.simulate('click');
+
+        // eslint-disable-next-line camelcase
+        const ButtonComponent_TransferRight = findByAttr(wrapper,
+            'testid',
+            'buttonId1').hostNodes();
+        expect(ButtonComponent_TransferRight.length).toBe(1);
+        ButtonComponent_TransferRight.simulate('click');
+
+        const SubmitButtont = findByAttr(wrapper,
+            'testid',
+            'buttonId2').hostNodes();
+        expect(SubmitButtont.length).toBe(1);
+        SubmitButtont.simulate('click');
+
+        const alertComponent = wrapper.find(Alert);
+        expect(alertComponent.length).toBe(1);
     });
 });

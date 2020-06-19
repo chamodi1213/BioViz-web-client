@@ -71,7 +71,7 @@ export default function GameInstruction() {
             <Button
                 testid = "openBtn"
                 style={{fontWeight: 'bolder'}}
-                variant="outlined"
+                variant="contained"
                 color="primary"
                 onClick={handleClickOpen}>
                     instructions

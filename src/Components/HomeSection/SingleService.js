@@ -1,6 +1,7 @@
 import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
+import Tooltip from '@material-ui/core/Tooltip';
 
 // Material UI
 import Grid from '@material-ui/core/Grid';
@@ -12,6 +13,8 @@ import style from './assets/css/image.module.css';
 // import HomeSections component
 import ViewMore from './ViewMore';
 
+import {useDispatch} from 'react-redux';
+import {setDrawerOpen} from '../../Redux/Actions/Mode';
 
 const useStyles = makeStyles((theme) => ({
     paper: {
@@ -46,9 +49,14 @@ const useStyles = makeStyles((theme) => ({
  * @return {React.ReactElement}
  */
 
-
 export default function SingleService({title, description, image}) {
     const classes = useStyles();
+
+    const dispatch = useDispatch();
+
+    const onMove = () =>{
+        dispatch(setDrawerOpen(true));
+    };
 
 
     return (
@@ -58,8 +66,19 @@ export default function SingleService({title, description, image}) {
                 <Paper className={classes.paper} >
 
                     <div className={classes.DivDecoration}>
-                        <img className={style.image} src={image} alt='' />
-                        <h3 className={style.title} >{title}</h3>
+                        <img
+                            // onClick={onMove}
+                            className={style.image}
+                            src={image}
+                            alt=''
+                        />
+                        <Tooltip title={'Click here to visit '+title} >
+                        <h3
+                            onClick={onMove}
+                            className={style.title}
+                            >{title}
+                        </h3>
+                        </Tooltip>
                         <ViewMore
                             testid='viewMoreId'
                             title={'More details..'}
@@ -77,4 +96,4 @@ SingleService.propTypes = {
     title: PropTypes.string,
     description: PropTypes.string,
     image: PropTypes.node,
-  };
+};
