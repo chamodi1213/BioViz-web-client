@@ -1,10 +1,11 @@
-import React from 'react';
+import React, {useState, useEffect} from 'react';
 import GameAlign from './GameAlign';
 import GameInput from './GameInput';
 import GameResult from './GameResult';
 import {Button} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import GameIntroduction from './GameIntroduction';
+import validateSequence from '../../Validators/sequence';
 
 /**
  * Component to wrap all the components in Game mode
@@ -12,29 +13,38 @@ import GameIntroduction from './GameIntroduction';
  */
 export default function GameSection() {
     /**
+     * scroll to top when this section is rendered
+     */
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
+
+    /**
      * object to keep input sequences
      */
-    const [input, setInput] = React.useState(undefined);
+    const [input, setInput] = useState(undefined);
     /**
      * object to keep align results
      */
-    const [alignment, setAlignment] = React.useState(undefined);
+    const [alignment, setAlignment] = useState(undefined);
     /**
      * keep error status of input score
      */
-    const [scoreErr, setErrMsg] = React.useState(false);
+    const [scoreErr, setErrMsg] = useState(false);
     const inputA = useSelector((state) => state.GameSeqA);
     const inputB = useSelector((state) => state.GameSeqB);
     const matchScore = useSelector((state) => state.matchScore);
     const mismatchPenanlty = useSelector((state) => state.mismatchPenalty);
     const gapPenalty = useSelector((state) => state.gapPenalty);
+    const genomeType = useSelector((state)=>state.genomeType);
+
     /**
      * input sequence validation
      */
-    const pattern = /^[AGCT]+$/;
-    let inputErr = false;
-    if (!inputA.match(pattern) || !inputB.match(pattern)) {
-        inputErr = true;
+    let inputSeqErr = false;
+    if (!validateSequence(inputA, genomeType) ||
+    !validateSequence(inputB, genomeType)) {
+        inputSeqErr = true;
     }
 
     /**
@@ -98,13 +108,13 @@ export default function GameSection() {
             <br />
             <Button
                 testid='submitBtn'
-                variant="outlined"
+                variant="contained"
                 color="secondary"
-                disabled={inputErr?true:false}
+                disabled={inputSeqErr?true:false}
                 onClick={onSubmit} >
                 Submit
             </Button>
-            {inputErr?
+            {inputSeqErr?
                 <div>
                 <span style={{color: '#ea0909'}}>invalid input</span>
                 </div>:null}
