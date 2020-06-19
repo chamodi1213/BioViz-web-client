@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useEffect} from 'react';
 import Divider from '@material-ui/core/Divider';
 
 // import components
@@ -14,6 +14,12 @@ import OutlineGame from './OutlineGame';
  */
 
 export default function HomeSection() {
+    /**
+     * scroll to top when this section is rendered
+     */
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
     return (
         <div>
 
