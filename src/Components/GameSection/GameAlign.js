@@ -28,7 +28,7 @@ const useStyles = makeStyles(() => ({
     },
     gameplay: {
         // backgroundColor: '#b7c0d138',
-        borderRadius: '10px',
+        // borderRadius: '10px',
         padding: 20,
     },
     box: {
@@ -351,7 +351,7 @@ export default function GameAlign(props) {
     }
 
     return (
-        <Box className={classes.gameplay}>
+        <Box boxShadow={6} className={classes.gameplay}>
             <GamePlay/>
             <br /><br />
             <Box boxShadow={6} className={classes.box}>
@@ -368,6 +368,7 @@ export default function GameAlign(props) {
                 placement="bottom" arrow>
                     <Button
                         testid='bestIdentityBtn'
+                        variant="contained"
                         className={classes.bestStateBtn}
                         onClick={setBestIdentityState}>
                         Go to a your best identity state

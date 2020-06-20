@@ -15,27 +15,32 @@ export default function GameInput() {
         <div>
             <br/>
             <GenomeTypeInput/>
+            <br/>
             <Grid container direction="column" spacing={3}>
                 <Grid item>
                     <h3>Input Sequence 1</h3>
-                    <div testid={'file1'}>
+                    <div style={{display: 'inline-flex'}}>
+                    <div testid={'file1'} style={{padding: 10}}>
                     <GameFileUpload
                         inputAction={setGameInputA}
                         value={useSelector((state) => state.GameSeqA)} />
                     </div>
-                    <h3>or</h3>
-                    <h3>Type sequence in the input field</h3>
+                    <h3>&ensp;or&ensp;Type sequence in the input field</h3>
+                    </div>
                     <GameTextInput
                         inputAction={setGameInputA}
                         value={useSelector((state) => state.GameSeqA)} />
                 </Grid>
                 <Grid item>
                     <h3>Input Sequence 2</h3>
+                    <div style={{display: 'inline-flex'}}>
+                    <div testid={'file2'} style={{padding: 10}}>
                     <GameFileUpload
                         inputAction={setGameInputB}
                         value={useSelector((state) => state.GameSeqB)} />
-                    <h3>or</h3>
-                    <h3>Type sequence in the input field</h3>
+                    </div>
+                    <h3>&ensp;or&ensp;Type sequence in the input field</h3>
+                    </div>
                     <GameTextInput
                         inputAction={setGameInputB}
                         value={useSelector((state) => state.GameSeqB)} />

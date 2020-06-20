@@ -45,6 +45,7 @@ class GameReport extends Component {
         this.match = this.props.result.match;
         this.mismatch = this.props.result.mismatch;
         this.gap = this.props.result.gap;
+        this.score = this.props.score;
     }
 
     /**
@@ -92,6 +93,7 @@ class GameReport extends Component {
                 {this.alignA.replace(/[e,-]/g, '_')}<br />
                 {this.alignB.replace(/[e,-]/g, '_')}<br /><br/>
                 {`Identity : ${this.identity.toFixed(3)}`}<br />
+                {`Total Score : ${this.score}`}<br />
                 <br />
             </Fragment>;
 
@@ -143,6 +145,7 @@ GameReport.propTypes = {
         mismatch: PropTypes.number,
         gap: PropTypes.number,
     }),
+    score: PropTypes.number,
 };
 
 export default withStyles(useStyles)(GameReport);

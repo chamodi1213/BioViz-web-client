@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     box: {
         borderRadius: '10px',
         padding: 5,
+        marginBottom: 10,
     },
 
     line: {
@@ -23,7 +24,7 @@ export default function GameIntroduction() {
 
     return (
         <Box boxShadow={6} className={classes.box}>
-            <h3>Introduction</h3>
+            <h2>Introduction</h2>
             <div className={classes.line}>
             <p>In this game you have to align two sequences
                  to get the same characters to the same

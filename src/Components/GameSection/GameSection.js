@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import GameAlign from './GameAlign';
 import GameInput from './GameInput';
 import GameResult from './GameResult';
-import {Button} from '@material-ui/core';
+import {Button, Box} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import GameIntroduction from './GameIntroduction';
 import validateSequence from '../../Validators/sequence';
@@ -105,7 +105,8 @@ export default function GameSection() {
 
     return (
         <div>
-            <h2>Alignment Game</h2>
+            <h1>Alignment Game</h1>
+            <Box style={{padding: 20}}>
             <GameIntroduction/>
             <GameInput/>
             <br />
@@ -122,6 +123,7 @@ export default function GameSection() {
                 <span style={{color: '#ea0909'}}>invalid input</span>
                 </div>:null}
             <br /><br />
+            </Box>
             {input ?
                 <GameAlign
                     input={input}

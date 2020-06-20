@@ -11,6 +11,9 @@ import GameResult from '../../../Components/GameSection/GameResult';
 const mockStore = configureStore();
 
 describe('GameSection Component', () => {
+    it('renders without crashing', () => {
+        window.scrollTo = jest.fn();
+      });
     describe('input-state', () => {
         it('should assign valid input to state input', () => {
             const store = mockStore({GameSeqA: 'AAACCGT', GameSeqB: 'CCAAGGT',
@@ -18,6 +21,7 @@ describe('GameSection Component', () => {
             const wrapper = mount( <Provider store={store}>
                             <GameSection></GameSection></Provider>);
             const expectedState = {
+                genome: 'DNA',
                 seqA: 'AAACCGT',
                 seqB: 'CCAAGGT',
             };
@@ -34,6 +38,7 @@ describe('GameSection Component', () => {
             const wrapper = mount( <Provider store={store}>
                             <GameSection></GameSection></Provider>);
             const expectedState = {
+                genome: 'DNA',
                 seqA: 'AAACCeeee',
                 seqB: 'CCAAGGTTA',
             };
@@ -50,6 +55,7 @@ describe('GameSection Component', () => {
         const wrapper = mount( <Provider store={store}>
                         <GameSection></GameSection></Provider>);
         const expectedState = {
+            genome: 'DNA',
             seqA: 'AAACCGGT',
             seqB: 'CCAeeeee',
         };
@@ -105,6 +111,8 @@ describe('GameSection Component', () => {
                 alignB: 'CCGAT',
                 identity: 0.200,
             };
+            findByAttr(wrapper, 'testid',
+            'submitBtn').hostNodes().simulate('click');
             findByAttr(wrapper, 'testid',
              'testCallback').hostNodes().simulate('click', data);
             const expectedState = {

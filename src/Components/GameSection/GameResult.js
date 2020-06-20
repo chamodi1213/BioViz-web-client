@@ -28,7 +28,6 @@ const useStyles = makeStyles(() => ({
     box: {
         backgroundColor: '#141938',
         color: '#e9e3e3de',
-        borderRadius: '10px',
         padding: 30,
         paddingTop: 10,
         paddingBottom: 40,
@@ -105,8 +104,12 @@ export default function GameResult(props) {
 
     return (
         <Box className={classes.box}>
-            <h2>Result</h2>
-            <Button onClick={handleReportOpen}>Generate Report</Button>
+            <div style={{float: 'left', paddingLeft: 70, paddingTop: 15}} >
+            <Button
+                onClick={handleReportOpen}
+                style={{color: '#141938'}}
+                variant="contained"
+                >Generate Report</Button>
             <Modal
                 open={report}
                 className={classes.reportModal}
@@ -115,8 +118,11 @@ export default function GameResult(props) {
                 aria-describedby="report-modal-description">
                 <GameReport
                     input={props.input}
-                    result={props.aligns}/>
+                    result={props.aligns}
+                    score={score}/>
             </Modal>
+            </div>
+            <h2 style={{paddingRight: 240}}>Result</h2>
             <h3>Alignment Status</h3>
             <table className={classes.tablerow}>
                 <tbody>
