@@ -385,7 +385,7 @@ export default function GameAlign(props) {
                 <Button
                     testid='prevBtn'
                     className={classes.resetBtn}
-                    variant="outlined"
+                    variant="contained"
                     color="primary"
                     onClick={back}
                     disabled={prev?false:true}
@@ -396,7 +396,7 @@ export default function GameAlign(props) {
                     testid='resetBtn'
                     className={classes.resetBtn}
                     variant="outlined"
-                    color="primary"
+                    style={{color: 'red'}}
                     onClick={reset} endIcon={<RestoreIcon/>}>
                     Reset
                 </Button>
@@ -404,7 +404,7 @@ export default function GameAlign(props) {
                     testid='submitBtn'
                     variant="outlined"
                     className={classes.submitBtn}
-                    color="primary"
+                    style={{color: 'green'}}
                     onClick={onSubmit} endIcon={<Icon>send</Icon>}
                 >
                     Submit

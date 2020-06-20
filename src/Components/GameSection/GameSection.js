@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import GameAlign from './GameAlign';
 import GameInput from './GameInput';
 import GameResult from './GameResult';
@@ -12,6 +12,13 @@ import validateSequence from '../../Validators/sequence';
  * @return {React.ReactElement}
  */
 export default function GameSection() {
+    /**
+     * scroll to top when this section is rendered
+     */
+    useEffect(() => {
+        window.scrollTo({top: 0, behavior: 'smooth'});
+    }, []);
+
     /**
      * object to keep input sequences
      */
@@ -104,7 +111,7 @@ export default function GameSection() {
             <br />
             <Button
                 testid='submitBtn'
-                variant="outlined"
+                variant="contained"
                 color="secondary"
                 disabled={inputSeqErr?true:false}
                 onClick={onSubmit} >

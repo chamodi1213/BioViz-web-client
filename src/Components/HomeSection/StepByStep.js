@@ -15,7 +15,7 @@ import style from './assets/css/image.module.css';
 // import components
 import PairwaiseDetails from './Details/PairwiseDetails';
 import MSADetails from './Details/MSADetails';
-import DialogScreen from './DialogScreen';
+// import DialogScreen from './DialogScreen';
 
 // import react-redux
 import {useDispatch, useSelector} from 'react-redux';
@@ -63,7 +63,7 @@ const useStyles = makeStyles((theme) => ({
  */
 
 // eslint-disable-next-line max-len
-export default function VerticalLinearStepper({HeadTitle, image, title1, title2, title3, title4, step1, step2, step3, step4}) {
+export default function VerticalLinearStepper({HeadTitle, image1, image2, image3, image4, title1, title2, title3, title4, step1, step2, step3, step4}) {
     const classes = useStyles();
     const [activeStep, setActiveStep] = React.useState(0);
     const steps = getSteps();
@@ -124,10 +124,38 @@ export default function VerticalLinearStepper({HeadTitle, image, title1, title2,
                         <StepContent testid='stepContentId'>
                             <div className={classes.actionsContainer}>
                                 <div>
+                                    {
+                                    index===0?
                                     <img
                                         className={style.img}
-                                        src={image} alt=''
+                                        alt=''
+                                        src={image1}
+                                    /> :
+                                        index === 1?
+                                        <img
+                                        className={style.img}
+                                        alt=''
+                                        src={image2}
+                                    />:
+                                        index ===2?
+                                        <img
+                                        className={style.img}
+                                        alt=''
+                                        src={image3}
+                                    />:
+                                    <img
+                                        className={style.img}
+                                        alt=''
+                                        src={image4}
                                     />
+
+
+                                    }
+                                    {/* <img
+                                        className={style.img}
+                                        alt=''
+                                        src={image}
+                                    /> */}
 
                                     <Typography testid='typographyId'>
                                         {getStepContent(index)}
@@ -172,7 +200,7 @@ export default function VerticalLinearStepper({HeadTitle, image, title1, title2,
                     </Button>
                     <br />
                     <Button testid='finalButtonId'
-                        variant="outlined"
+                        variant="contained"
                         color="primary"
                         onClick={onMove}
                         >
@@ -195,7 +223,8 @@ export default function VerticalLinearStepper({HeadTitle, image, title1, title2,
                         <PairwaiseDetails testid = 'testPWDetails' /> :
                      `${HeadTitle}` === 'MSA' ?
                         <MSADetails testid = 'testPWDetails' /> :
-                        <DialogScreen />
+                        // <DialogScreen />
+                        ''
                 }
             </div>
         </div>
@@ -203,7 +232,10 @@ export default function VerticalLinearStepper({HeadTitle, image, title1, title2,
 }
 VerticalLinearStepper.propTypes = {
     HeadTitle: PropTypes.string,
-    image: PropTypes.node,
+    image1: PropTypes.node,
+    image2: PropTypes.node,
+    image3: PropTypes.node,
+    image4: PropTypes.node,
     title1: PropTypes.string,
     title2: PropTypes.string,
     title3: PropTypes.string,
