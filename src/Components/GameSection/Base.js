@@ -3,7 +3,6 @@ import {Avatar} from '@material-ui/core';
 import {makeStyles} from '@material-ui/core/styles';
 import PropTypes from 'prop-types';
 import genomeStyles from '../../styles/GameStyles.module.css';
-import {useSelector} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
     avatar: {
@@ -20,9 +19,9 @@ const useStyles = makeStyles((theme) => ({
  */
 export default function Base(props) {
     const classes = useStyles();
-    const genomeType = useSelector((state)=>(state.genomeType));
     const index = props.index;
     const base = props.base;
+    const genomeType = props.genome;
     const baseColor = (base === '-' || base === 'e') ? 'gap' :
     genomeType.concat('-', base);
 
@@ -36,4 +35,5 @@ export default function Base(props) {
 Base.propTypes = {
     index: PropTypes.number,
     base: PropTypes.string,
+    genome: PropTypes.string,
 };

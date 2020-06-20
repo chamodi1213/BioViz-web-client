@@ -75,6 +75,7 @@ export default function GameSection() {
             setInput({
                 seqA: inputA,
                 seqB: inputB + remain,
+                genome: genomeType,
             });
         } else if (inputA.length > 0 && inputB.length > inputA.length) {
             const remain = 'e'.repeat(inputB.length - inputA.length);
@@ -84,11 +85,13 @@ export default function GameSection() {
             setInput({
                 seqA: inputA + remain,
                 seqB: inputB,
+                genome: genomeType,
             });
         } else {
             setInput({
                 seqA: inputA,
                 seqB: inputB,
+                genome: genomeType,
             });
         }
     }
@@ -126,7 +129,7 @@ export default function GameSection() {
                          WITH VALID SCORE/PENALTY
                     </h3>
                 </div>:
-                alignment ? <GameResult aligns={alignment} />:
+                alignment ? <GameResult aligns={alignment} input={input}/>:
                 <div testid={'alignmentNotSet'}/>}
         </div>
     );
