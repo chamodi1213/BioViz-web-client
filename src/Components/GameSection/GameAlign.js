@@ -27,29 +27,36 @@ const useStyles = makeStyles(() => ({
         backgroundColor: 'lightgreen',
     },
     gameplay: {
-        // backgroundColor: '#b7c0d138',
-        // borderRadius: '10px',
+        backgroundColor: '#fefefe12',
         padding: 20,
     },
     box: {
-        // backgroundColor: '#b7c0d138',
         borderRadius: '10px',
         padding: 10,
         paddingBottom: 40,
         paddingTop: 40,
     },
+    backBtn: {
+        marginRight: 20,
+        backgroundColor: '#5e71d9',
+        fontWeight: 'bolder',
+        paddingLeft: 15,
+        paddingRight: 15,
+    },
     resetBtn: {
         marginRight: 20,
-        // color: '#1e2e51',
+        backgroundColor: '#e14949',
         fontWeight: 'bolder',
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     submitBtn: {
-        // color: '#1e2e51',
+        backgroundColor: '#5e71d9',
         fontWeight: 'bolder',
+        paddingLeft: 15,
+        paddingRight: 15,
     },
     bestStateBtn: {
-        // backgroundColor: '#9e9e9499',
-        // color: '#222c5a',
         fontWeight: 'bolder',
         padding: 10,
     },
@@ -385,9 +392,7 @@ export default function GameAlign(props) {
                 <br />
                 <Button
                     testid='prevBtn'
-                    className={classes.resetBtn}
-                    variant="contained"
-                    color="primary"
+                    className={classes.backBtn}
                     onClick={back}
                     disabled={prev?false:true}
                     endIcon={<UndoIcon/>}>
@@ -396,16 +401,13 @@ export default function GameAlign(props) {
                 <Button
                     testid='resetBtn'
                     className={classes.resetBtn}
-                    variant="outlined"
-                    style={{color: 'red'}}
+                    style={{Color: '#fafafa'}}
                     onClick={reset} endIcon={<RestoreIcon/>}>
                     Reset
                 </Button>
                 <Button
                     testid='submitBtn'
-                    variant="outlined"
                     className={classes.submitBtn}
-                    style={{color: 'green'}}
                     onClick={onSubmit} endIcon={<Icon>send</Icon>}
                 >
                     Submit

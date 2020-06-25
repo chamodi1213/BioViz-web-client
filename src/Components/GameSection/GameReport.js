@@ -1,6 +1,5 @@
 import React, {Component, Fragment} from 'react';
 import {withStyles} from '@material-ui/core/styles';
-
 import PropTypes from 'prop-types';
 import {Button} from '@material-ui/core';
 
@@ -48,17 +47,17 @@ class GameReport extends Component {
         this.score = this.props.score;
     }
 
-    /**
-     * Displays a prompt to download the content of the component
-     * as a text file
-     */
+    // /**
+    //  * Displays a prompt to download the content of the component
+    //  * as a text file
+    //  */
     downloadTxtFile() {
         const element = document.createElement('a');
         const file = new Blob(
             [document.getElementById('printable-component').innerText],
             {type: 'text/plain'});
         element.href = URL.createObjectURL(file);
-        element.download = 'report.txt';
+        element.download = 'BioViz-game-report.txt';
         document.body.appendChild(element);
         element.click();
     }
@@ -99,7 +98,8 @@ class GameReport extends Component {
 
         return (
             <div className={classes.paper} tabIndex={-1}>
-            <Button variant='outlined'
+            <Button
+                variant='outlined'
                 onClick={this.downloadTxtFile}>
                 Download as a text file
             </Button>
