@@ -24,26 +24,16 @@ describe('GameFileUplod Component', () => {
     expect(btn.length).toBe(1);
     });
 
-    // it('should simulate onchange function', async ()=>{
-    //     const file = new File(
-    //         ['>seq\nAACGT'], 'inputseq.txt',
-    //         {type: 'text/plain'});
-    //     try {
-    //     await findByAttr(wrapper, 'testid',
-    //     'file').hostNodes().at(0).props().
-    //         onChange({target: {files: [file]}});
-    //     } catch (err) {
-    //         console.log(err);
-    //     }
-    // });
-
-    // it('works with async/await and resolves', async () => {
-    //     expect.assertions(1);
-    //     const click = findByAttr(wrapper, 'testid',
-    //     'file').hostNodes().at(0).props().
-    //         onChange({target: {files: [file]}});
-    //     await expect(click).resolves.toEqual('Paul');
-    //   });
+    it('should simulate onchange function', ()=>{
+        const wrapper2 = mount(<Provider store={store}>
+            <GameFileUpload {...testProp}></GameFileUpload></Provider>);
+        const file = new File(
+            ['>seq\nAACGT'], 'inputseq.txt',
+            {type: 'text/plain'});
+        findByAttr(wrapper2, 'testid',
+            'file').hostNodes().at(0).props().
+                onChange({target: {files: [file]}});
+    });
 
     it('should log error for invalid input', ()=>{
         const file = new File(['TTCCA'], 'inputseq.png', {
@@ -54,9 +44,8 @@ describe('GameFileUplod Component', () => {
             onChange({target: {files: [file]}});
     });
 
-    it('should invoke handleError function', ()=>{
+    it('should handle file read function', ()=>{
         findByAttr(wrapper, 'testid',
-        'handleErrorTest').hostNodes().
-        simulate('click');
+        'handleFileRead').hostNodes().simulate('click');
     });
 });

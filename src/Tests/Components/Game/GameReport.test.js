@@ -27,13 +27,9 @@ describe('GameReport Component', () => {
         expect(comp.length).toBe(1);
     });
 
-    // it('download function', ()=>{
-    //     // const comp = document.createElement('p');
-    //     // comp.id = 'printable-component';
-    //     // comp.innerText = 'test';
-    //     // const document = {element: comp};
-    //     const wrapper2 = mount(<GameReport {...testProps}/>);
-    //     findByAttr(wrapper2, 'testid', 'downloadBtn')
-    //     .hostNodes().simulate('click');
-    // });
+    it('download function', ()=>{
+        const wrapper2 = mount(<GameReport {...testProps}/>);
+        findByAttr(wrapper2, 'testid', 'downloadBtn')
+        .hostNodes().simulate('click');
+    });
 });

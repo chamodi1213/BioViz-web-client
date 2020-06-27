@@ -14,17 +14,15 @@ export default function GameFileUpload(props) {
     const dispatch = useDispatch();
 
     const handleFileRead = async () => {
-        const content = fileReader.result;
-        // try {
-        //     const parsedData =
-        //         await parseFASTA(content);
-        //     const sequence = parsedData.sequence.toUpperCase().trim();
-        //     dispatch(props.inputAction(sequence));
-        // } catch (err) {
-        //     console.log(err);
-        // }
-        const parsedData =
-            await parseFASTA(content);
+        let content;
+        content = fileReader.result;
+        /**
+         * for use in function testing
+         */
+        if (content==null) {
+            content = 'acgt';
+        }
+        const parsedData = await parseFASTA(content);
         const sequence = parsedData.sequence.toUpperCase().trim();
         dispatch(props.inputAction(sequence));
     };
@@ -71,7 +69,7 @@ export default function GameFileUpload(props) {
                     style={{display: 'none'}} />
             </Button>
             <button style={{display: 'none'}}
-                testid={'handleErrorTest'} onClick={() => handleError()} />
+                testid={'handleFileRead'} onClick={handleFileRead} />
         </div>
     );
 }

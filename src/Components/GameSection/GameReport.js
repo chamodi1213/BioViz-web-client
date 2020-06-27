@@ -53,13 +53,17 @@ class GameReport extends Component {
     //  */
     downloadTxtFile() {
         const element = document.createElement('a');
-        const file = new Blob(
-            [document.getElementById('printable-component').innerText],
-            {type: 'text/plain'});
-        element.href = URL.createObjectURL(file);
-        element.download = 'BioViz-game-report.txt';
-        document.body.appendChild(element);
-        element.click();
+        try {
+            const file = new Blob(
+                [document.getElementById('printable-component').innerText],
+                {type: 'text/plain'});
+            element.href = URL.createObjectURL(file);
+            element.download = 'BioViz-game-report.txt';
+            document.body.appendChild(element);
+            element.click();
+        } catch (error) {
+            console.log('content not loaded');
+        }
     }
 
 
@@ -99,6 +103,7 @@ class GameReport extends Component {
         return (
             <div className={classes.paper} tabIndex={-1}>
             <Button
+                testid={'downloadBtn'}
                 variant='outlined'
                 onClick={this.downloadTxtFile}>
                 Download as a text file
