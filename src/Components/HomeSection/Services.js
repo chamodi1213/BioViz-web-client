@@ -18,14 +18,14 @@ const services = [
      {
     title: 'Pairwise Alignment',
      description: `Input your two sequence to get alignment
-      result with visualizing by metrics.`,
+      result with visualizing metrics.`,
      image: analyzeImage,
     },
 
     {
     title: 'MSA Alignment',
     description: `Enter your sequences to get 
-        alignment result with visualizing by graph.`,
+        alignment result with visualizing phylogenetic tree.`,
     image: visualizeImage,
     },
 
