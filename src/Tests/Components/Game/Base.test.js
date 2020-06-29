@@ -8,10 +8,11 @@ import configureStore from 'redux-mock-store';
 const mockStore = configureStore();
 
 describe('Base Component', ()=>{
-    const store = mockStore({genomeType: 'DNA'});
+    const store = mockStore();
     const testProp = {
         index: 4,
         base: 'G',
+        genome: 'DNA',
     };
     it('matches snapshot', ()=>{
         const tree = renderer.create(<Provider store={store}>

@@ -2,7 +2,7 @@ import React, {useState, useEffect} from 'react';
 import GameAlign from './GameAlign';
 import GameInput from './GameInput';
 import GameResult from './GameResult';
-import {Button} from '@material-ui/core';
+import {Button, Box} from '@material-ui/core';
 import {useSelector} from 'react-redux';
 import GameIntroduction from './GameIntroduction';
 import validateSequence from '../../Validators/sequence';
@@ -82,6 +82,7 @@ export default function GameSection() {
             setInput({
                 seqA: inputA,
                 seqB: inputB + remain,
+                genome: genomeType,
             });
         } else if (inputA.length > 0 && inputB.length > inputA.length) {
             const remain = 'e'.repeat(inputB.length - inputA.length);
@@ -91,18 +92,21 @@ export default function GameSection() {
             setInput({
                 seqA: inputA + remain,
                 seqB: inputB,
+                genome: genomeType,
             });
         } else {
             setInput({
                 seqA: inputA,
                 seqB: inputB,
+                genome: genomeType,
             });
         }
     }
 
     return (
         <div>
-            <h2>Alignment Game</h2>
+            <h1>Alignment Game</h1>
+            <Box style={{padding: 20}}>
             <GameIntroduction/>
             <GameInput/>
             <br />
@@ -119,6 +123,7 @@ export default function GameSection() {
                 <span style={{color: '#ea0909'}}>invalid input</span>
                 </div>:null}
             <br /><br />
+            </Box>
             {input ?
                 <GameAlign
                     input={input}
@@ -133,7 +138,7 @@ export default function GameSection() {
                          WITH VALID SCORE/PENALTY
                     </h3>
                 </div>:
-                alignment ? <GameResult aligns={alignment} />:
+                alignment ? <GameResult aligns={alignment} input={input}/>:
                 <div testid={'alignmentNotSet'}/>}
         </div>
     );

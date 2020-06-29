@@ -11,7 +11,6 @@ import validateSequence from '../../Validators/sequence';
  */
 export default function GameTextInput(props) {
     const dispatch = useDispatch();
-    // const pattern = /^[AGCTacgt]+$/;
     const genomeType = useSelector((state)=>state.genomeType);
     const [inputErr, setInputErr] = useState(false);
 
@@ -26,11 +25,6 @@ export default function GameTextInput(props) {
     function inputSeq(event) {
         dispatch(props.inputAction(event.target.value.trim().toUpperCase()));
         setInputErr(!validateSequence(event.target.value.trim(), genomeType));
-        // if (!event.target.value.match(pattern)) {
-        //     setInputErr(true);
-        // } else {
-        //     setInputErr(false);
-        // }
     }
 
     return (
@@ -46,7 +40,7 @@ export default function GameTextInput(props) {
                 inputProps={{spellCheck: 'false'}}
                 error = {inputErr}
                 helperText={inputErr ?
-                    'Invalid DNA sequence' : null}
+                    'Invalid DNA sequence' :null}
                 >
             </TextField>
         </div>

@@ -1,12 +1,13 @@
 import React from 'react';
-import {Box} from '@material-ui/core';
+import {Box, Button, Modal} from '@material-ui/core';
 import PropTypes from 'prop-types';
 import MinimizeIcon from '@material-ui/icons/Minimize';
 import DoneOutlineRoundedIcon from '@material-ui/icons/DoneOutlineRounded';
 import CloseRoundedIcon from '@material-ui/icons/CloseRounded';
 import {makeStyles} from '@material-ui/core/styles';
 import genomeStyles from '../../styles/GameStyles.module.css';
-import {useSelector} from 'react-redux';
+// import {useSelector} from 'react-redux';
+import GameReport from './GameReport';
 
 const useStyles = makeStyles(() => ({
     label: {
@@ -27,7 +28,6 @@ const useStyles = makeStyles(() => ({
     box: {
         backgroundColor: '#141938',
         color: '#e9e3e3de',
-        borderRadius: '10px',
         padding: 30,
         paddingTop: 10,
         paddingBottom: 40,
@@ -58,11 +58,12 @@ export default function GameResult(props) {
     const mismatchPenanlty = props.aligns.mismatch;
     const gapPenalty = props.aligns.gap;
     const identity = props.aligns.identity;
-    const genomeType = useSelector((state)=>(state.genomeType));
+    const genomeType = props.input.genome;
     /**
      * array to keep a status icon for each element in alignmet
      */
     const row = [];
+    const [report, setReport] = React.useState(false);
     let score = 0;
     let matchSc = 0;
     let mismatchSc = 0;
@@ -93,9 +94,35 @@ export default function GameResult(props) {
         (ele) => <td key={ele.index}>{ele.type}
             <h4 style={{color: '#868dac'}}>{ele.index}</h4></td>);
 
+    function handleReportOpen() {
+        setReport(true);
+    }
+
+    function handleReportClose() {
+        setReport(false);
+    }
+
     return (
         <Box className={classes.box}>
-            <h2>Result</h2>
+            <div style={{float: 'left', paddingLeft: 70, paddingTop: 15}} >
+            <Button
+                onClick={handleReportOpen}
+                style={{color: '#141938'}}
+                variant="contained"
+                >Generate Report</Button>
+            <Modal
+                open={report}
+                className={classes.reportModal}
+                onClose={handleReportClose}
+                aria-labelledby="report-modal-title"
+                aria-describedby="report-modal-description">
+                <GameReport
+                    input={props.input}
+                    result={props.aligns}
+                    score={score}/>
+            </Modal>
+            </div>
+            <h2 style={{paddingRight: 240}}>Result</h2>
             <h3>Alignment Status</h3>
             <table className={classes.tablerow}>
                 <tbody>
@@ -162,6 +189,6 @@ GameResult.propTypes = {
         mismatch: PropTypes.number,
         gap: PropTypes.number,
         identity: PropTypes.number,
-
     }),
+    input: PropTypes.object,
 };
