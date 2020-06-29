@@ -67,7 +67,7 @@ export default function SingleService({title, description, image}) {
 
                     <div className={classes.DivDecoration}>
                         <img
-                            // onClick={onMove}
+                            onClick={onMove}
                             className={style.image}
                             src={image}
                             alt=''
