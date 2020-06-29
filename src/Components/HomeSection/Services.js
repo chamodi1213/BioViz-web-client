@@ -17,21 +17,21 @@ import SingleService from './SingleService';
 const services = [
      {
     title: 'Pairwise Alignment',
-     description: `Input your two sequence to get standard or 
-     your customized alignment results.`,
+     description: `Input your two sequence to get alignment
+      result with visualizing metrics.`,
      image: analyzeImage,
     },
 
     {
     title: 'MSA Alignment',
     description: `Enter your sequences to get 
-        user-friendly matrixes and alignments.`,
+        alignment result with visualizing phylogenetic tree.`,
     image: visualizeImage,
     },
 
     {
     title: 'Simple GamePlay',
-    description: `This activity is to some enterainment 
+    description: `This activity is for enterainment 
         and also get a basic knowledge about how alignments work.`,
     image: gamePlayImage,
     },

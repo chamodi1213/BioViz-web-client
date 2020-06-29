@@ -6,6 +6,7 @@ const useStyles = makeStyles((theme) => ({
     box: {
         borderRadius: '10px',
         padding: 5,
+        marginBottom: 10,
     },
 
     line: {
@@ -23,7 +24,7 @@ export default function GameIntroduction() {
 
     return (
         <Box boxShadow={6} className={classes.box}>
-            <h3>Introduction</h3>
+            <h2>Introduction</h2>
             <div className={classes.line}>
             <p>In this game you have to align two sequences
                  to get the same characters to the same
@@ -32,8 +33,10 @@ export default function GameIntroduction() {
             <p>Identity of the alignment is calculated as:
                  no of matches/length of alignment. Try to acheive maximum
                   identity by aligning more matches with lesser gaps.</p>
-            <p>Input sequence should only contain &apos;A&apos; &apos;C&apos;
-                &apos;G&apos; &apos;T&apos; characters.
+            <p>DNA sequences should only contain &apos;A&apos; &apos;C&apos;
+                &apos;G&apos; &apos;T&apos; characters. Protein sequences can
+                 contain letters other than &apos;J&apos;
+                  &apos;O&apos; &apos;U&apos;
             </p>
             </div>
         </Box>

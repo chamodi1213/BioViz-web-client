@@ -9,15 +9,21 @@ import configureStore from 'redux-mock-store';
 const mockStore = configureStore();
 
 describe('GameAlign Component', () => {
-    const store = mockStore({genomeType: 'DNA'});
+    const store = mockStore();
     const testProp1 = { // trailing gaps('e') in seqA
         input: {
+            genome: 'DNA',
             seqA: 'A-ACGTGGCCAeee',
             seqB: 'CCGA-TG-TTCACG',
         },
     };
+    const initialState = {
+        seqA: testProp1.input.seqA,
+        seqB: testProp1.input.seqB,
+    };
     const testProp2 = { // trailing gaps('e') in seqB
         input: {
+            genome: 'DNA',
             seqA: 'A-ACGT-GGCCGGT',
             seqB: 'CCGA-TG-TTeeee',
         },
@@ -31,7 +37,7 @@ describe('GameAlign Component', () => {
         it('assign input to component state', ()=>{
             const compState = findByAttr(wrapper1, 'testid',
             'checkState').hostNodes();
-           expect(compState.prop('value')).toEqual(testProp1.input);
+           expect(compState.prop('value')).toEqual(initialState);
         });
     });
 
@@ -165,7 +171,7 @@ describe('GameAlign Component', () => {
              'resetBtn').hostNodes().simulate('click');// click reset button
             const resetState = findByAttr(wrapper1, 'testid',
             'checkState').hostNodes();
-           expect(resetState.prop('value')).toEqual(testProp1.input);
+           expect(resetState.prop('value')).toEqual(initialState);
         });
     });
 
@@ -174,6 +180,7 @@ describe('GameAlign Component', () => {
             const mockfunc = jest.fn();
             const testProp = {
                 input: {
+                    genome: 'DNA',
                     seqA: 'A-ACGTGGCCAeee',
                     seqB: 'CCGA-TG-TTCACG',
                 },
