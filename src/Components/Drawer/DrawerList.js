@@ -10,7 +10,7 @@ import Icon from '@material-ui/core/Icon';
 import SportsEsportsIcon from '@material-ui/icons/SportsEsports';
 import HomeIcon from '@material-ui/icons/Home';
 
-import DnaIcon from '../../assets/icons/dna.svg';
+import {ReactComponent as Logo} from '../../assets/icons/dna.svg';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import Switch from '@material-ui/core/Switch';
 import {useDispatch, useSelector} from 'react-redux';
@@ -51,7 +51,7 @@ export function DrawerList(props) {
         themeSelectorValue = true;
     }
 
-    const onThemeChange = (event)=>{
+    const onThemeChange = (event) => {
         if (event.target.checked === true) {
             dispatch(setTheme('dark'));
         } else {
@@ -59,6 +59,8 @@ export function DrawerList(props) {
         }
     };
 
+    const dnaLogo = <Logo fill='#fff' stroke='#000'
+        stroke-width="5%" width='25px' height='25px' />;
 
     // array with menu name, description and icon
     const navItems =
@@ -67,11 +69,11 @@ export function DrawerList(props) {
             <HomeIcon key='0' />],
         ['PairAlign',
             'Align a pair of sequences',
-            <Icon key='1'><img src={DnaIcon} alt="PairAlign Icon" /></Icon>],
+            <Icon key='1'>{dnaLogo}</Icon>],
         ['MSA',
             'Align multiple sequences',
-            <span key='2'> <Icon><img src={DnaIcon} alt="MSA Icon" /></Icon>
-                <Icon><img src={DnaIcon} alt="MSA Icon" /></Icon></span>],
+            <span key='2'> <Icon>{dnaLogo}</Icon>
+                <Icon>{dnaLogo}</Icon></span>],
         ['Alignment Game',
             'Test your skill on detecting alignments',
             <SportsEsportsIcon key='3' />]];
@@ -100,17 +102,17 @@ export function DrawerList(props) {
             </List>
             <Divider />
             <div style={{textAlign: 'center', marginTop: 3}}>
-            <FormControlLabel
-                control={
-                    <Switch
-                        checked={themeSelectorValue}
-                        onChange={onThemeChange}
-                        name="themeValue"
-                        color="primary"
-                    />
-                }
-                label="Dark Mode"
-            />
+                <FormControlLabel
+                    control={
+                        <Switch
+                            checked={themeSelectorValue}
+                            onChange={onThemeChange}
+                            name="themeValue"
+                            color="primary"
+                        />
+                    }
+                    label="Dark Mode"
+                />
             </div>
         </div>
     );
